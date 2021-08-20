@@ -30,26 +30,28 @@
     </header>
     <div class="container">
       <!-- Time Blocks -->
+      <!-- <i class="far fa-save"></i> -->
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  -->
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     
    
     <script>    
-
-      const today = $("#currentDay");
+      // Displaying today's date
+      const today = document.getElementById("currentDay");
       const now = dayjs().format('dddd, MMMM DD'); 
       today.append(now); 
-      
+      // declaring the current hour 0-24
       const hours = dayjs().hour();
-      const divContain = $(".container");
-     
-     
       
+      const divContain = document.querySelector(".container");
+
       for (var i = 7; i < 21; i++){
         var timeDiv = document.createElement("div");
         var input = document.createElement("textarea");
+        var p = document.createElement("p");
+
         input.setAttribute("class", "past");
         if (i === hours){
         input.setAttribute("class", "present");
@@ -58,38 +60,27 @@
         input.setAttribute("class", "future");
         }
 
-        timeDiv.textContent = i +" AM"; //creating rows of time block
-        if (i === 13){
-          timeDiv.textContent = "1 PM";
-        }else if (i === 14){
-          timeDiv.textContent = "2 PM";
-        }else if (i === 15){
-          timeDiv.textContent = "3 PM";
-        }else if (i === 16){
-          timeDiv.textContent = "4 PM";
-        }else if (i === 17){
-          timeDiv.textContent = "5 PM";
-        }else if (i === 18){
-          timeDiv.textContent = "6 PM";
-        }else if (i === 19){
-          timeDiv.textContent = "7 PM";
-        }else if (i === 20){
-          timeDiv.textContent = "8 PM";
-        }else if (i === 21){
-          timeDiv.textContent = "9 PM";
+        timeDiv.appendChild(p);
+        p.textContent = i +" AM";
+        if (i >= 13){
+          p.textContent = i-12 + " PM"; //to show non-miltary time
         }
-        timeDiv.setAttribute("class", "hour");
+
+        p.setAttribute("class", "hour");
+        timeDiv.setAttribute("class", "row");
+
         input.textContent = "";
         input.setAttribute("data-index", i);
         timeDiv.appendChild(input);
 
         var button = document.createElement("button");
-        button.textContent = "Save";
+        var icon = document.createElement("i");
+        icon.setAttribute("class", "far fa-save");
+        button.append(icon);
         button.setAttribute("class", "saveBtn"); //see style.css line 60
-        button.style.cssFloat = "right";
-
+        // button.style.cssFloat = "right"; //no longer needed once row class is applied to timeDiv
         timeDiv.appendChild(button);
-        divContain.append(timeDiv);
+        divContain.append(timeDiv); //applying the created div to the main container that was pre-created in HTML
       }
     
 
