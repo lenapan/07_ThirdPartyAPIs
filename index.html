@@ -29,10 +29,70 @@
       <p id="currentDay" class="lead"></p>
     </header>
     <div class="container">
-      <!-- Timeblocks go here -->
+      <!-- Time Blocks -->
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    
+   
+    <script>    
+
+      const today = $("#currentDay");
+      const now = dayjs().format('dddd, MMMM DD'); 
+      today.append(now); 
+      
+      const hours = dayjs().hour();
+      const divContain = $(".container");
+     
+     
+      
+      for (var i = 7; i < 21; i++){
+        var timeDiv = document.createElement("div");
+        var input = document.createElement("textarea");
+        input.setAttribute("class", "past");
+        if (i === hours){
+        input.setAttribute("class", "present");
+         }
+        else if (i > hours){
+        input.setAttribute("class", "future");
+        }
+
+        timeDiv.textContent = i +" AM"; //creating rows of time block
+        if (i === 13){
+          timeDiv.textContent = "1 PM";
+        }else if (i === 14){
+          timeDiv.textContent = "2 PM";
+        }else if (i === 15){
+          timeDiv.textContent = "3 PM";
+        }else if (i === 16){
+          timeDiv.textContent = "4 PM";
+        }else if (i === 17){
+          timeDiv.textContent = "5 PM";
+        }else if (i === 18){
+          timeDiv.textContent = "6 PM";
+        }else if (i === 19){
+          timeDiv.textContent = "7 PM";
+        }else if (i === 20){
+          timeDiv.textContent = "8 PM";
+        }else if (i === 21){
+          timeDiv.textContent = "9 PM";
+        }
+        timeDiv.setAttribute("class", "hour");
+        input.textContent = "";
+        input.setAttribute("data-index", i);
+        timeDiv.appendChild(input);
+
+        var button = document.createElement("button");
+        button.textContent = "Save";
+        button.setAttribute("class", "saveBtn"); //see style.css line 60
+        button.style.cssFloat = "right";
+
+        timeDiv.appendChild(button);
+        divContain.append(timeDiv);
+      }
+    
+
+    </script>
   </body>
 </html>
