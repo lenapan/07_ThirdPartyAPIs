@@ -30,7 +30,6 @@
     </header>
     <div class="container">
       <!-- Time Blocks -->
-      <!-- <i class="far fa-save"></i> -->
     </div>
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  -->
@@ -47,12 +46,15 @@
       
       const divContain = document.querySelector(".container");
 
-      for (var i = 7; i < 21; i++){
+      for (var i = 7; i < 21; i++){ //Creating 7am - 8pm time blocks
         var timeDiv = document.createElement("div");
         var input = document.createElement("textarea");
         var p = document.createElement("p");
-
+        
+        timeDiv.setAttribute("class", "row");
+        p.setAttribute("class", "hour");
         input.setAttribute("class", "past");
+
         if (i === hours){
         input.setAttribute("class", "present");
          }
@@ -65,25 +67,29 @@
         if (i >= 13){
           p.textContent = i-12 + " PM"; //to show non-miltary time
         }
-
-        p.setAttribute("class", "hour");
-        timeDiv.setAttribute("class", "row");
-
-        input.textContent = "";
-        input.setAttribute("data-index", i);
+        // input.setAttribute("data-index", i);
+        input.setAttribute("id", i);
         timeDiv.appendChild(input);
 
         var button = document.createElement("button");
         var icon = document.createElement("i");
         icon.setAttribute("class", "far fa-save");
         button.append(icon);
+        button.setAttribute("id", i);
         button.setAttribute("class", "saveBtn"); //see style.css line 60
         // button.style.cssFloat = "right"; //no longer needed once row class is applied to timeDiv
         timeDiv.appendChild(button);
         divContain.append(timeDiv); //applying the created div to the main container that was pre-created in HTML
       }
-    
-
+        //Saving to local storage section
+        var text = document.querySelector("textarea");
+        var btn = document.querySelector("button");
+        btn.addEventListener("click", function(){
+        localStorage.getItem(text.value);
+        localStorage.setItem("tasks", text.value);
+        });
+        text.textContent = localStorage.getItem("tasks");
+        
     </script>
   </body>
 </html>

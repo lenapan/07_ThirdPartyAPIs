@@ -22,15 +22,16 @@ textarea{
   border-radius: 0;
   border-bottom: 10px solid black;
 }
+/* Did not use the two classes below but it came as a "starter code" */
 
-.description{
+/* .description{
   white-space: pre-wrap;
 }
 
 .time-block{
   text-align: center;
   border-radius: 15px;
-}
+} */
 
 .row {
   white-space: pre-wrap;
@@ -65,9 +66,16 @@ textarea{
   border-bottom-right-radius: 15px;
   background-color: #06AED5;
   color: white;
+  /* additional style */
+  padding:20px;
 }
 
 .saveBtn i:hover {
-  font-size: 20px;
+  /* font-size: 20px;  */
+  font-size: 25px;
   transition: all .3s ease-in-out;
+}
+/* additional style */
+.saveBtn i {
+  font-size: 20px;
 }
